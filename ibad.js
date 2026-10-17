@@ -112,3 +112,32 @@ function closeModalOnOuterClick(event, modalId) {
     closeModal(modalId);
   }
 }
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const floatingDock = document.getElementById("floatingDock");
+    const dockTrigger = document.getElementById("dockTrigger");
+    const dockItems = document.querySelectorAll(".dock-item");
+
+    // Toggle Buka/Tutup Menu (Hanya tertutup/terbuka saat tombol trigger diklik)
+    dockTrigger.addEventListener("click", (e) => {
+        e.stopPropagation();
+        floatingDock.classList.toggle("active");
+    });
+
+    // Otomatis Tutup jika klik di luar area menu
+    document.addEventListener("click", (e) => {
+        if (!floatingDock.contains(e.target)) {
+            floatingDock.classList.remove("active");
+        }
+    });
+
+    // Pindah status 'active' saat item diklik TANPA menutup menu
+    dockItems.forEach((item) => {
+        item.addEventListener("click", () => {
+            dockItems.forEach((link) => link.classList.remove("active"));
+            item.classList.add("active");
+            // Menutup otomatis dihapus agar menu tetap terbuka
+        });
+    });
+});
