@@ -68,91 +68,147 @@
         .btn-outline { background: transparent; border: 2px solid var(--accent); color: var(--accent); box-shadow: none; }
         .btn-outline:hover { background: var(--accent-glow); }
 
-        /* --- NEW: SIDE DOCK NAVIGATION (SAMPING KANAN) --- */
-        .nav-dock {
-            position: fixed;
-            right: 0;
-            top: 0;
-            height: 100vh;
-            width: var(--nav-width);
-            background: transparent;
-            backdrop-filter: blur(5px);
-            border-left: 1px solid rgba(56, 189, 248, 0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            padding: 30px 0;
-            z-index: 1000;
-            box-shadow: -5px 0 20px rgba(0,0,0,0.2);
-        }
+  /* --- CONTAINER UTAMA (POSISI TENGAH SAMPING KANAN) --- */
+.floating-dock {
+    position: fixed;
+    right: 20px;
+    top: 45%;
+    transform: translateY(-50%);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+}
 
-        .dock-logo {
-            font-family: 'Fira Code', monospace;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #000;
-            margin-bottom: 40px;
-            cursor: pointer;
-        }
+/* --- TOMBOL TRIGGER UTAMA (GANTI BURGER) --- */
+.dock-trigger {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #fefeff; /* Warna aksen biru utama */
+    border: none;
+    color: #000000;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(60, 99, 206, 0.692);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    outline: none;
+}
 
-        .dock-menu {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            align-items: center;
-            flex-grow: 1; /* Agar menu berada di tengah vertikal */
-        }
+.dock-trigger:hover {
+    transform: scale(1.1);
+    background: #d1d4dd;
+}
 
-        .dock-link {
-            position: relative;
-            font-size: 1.2rem;
-            color: #bbb3b3;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: 0.3s;
-        }
+/* Efek Rotasi Ikon Trigger */
+.dock-trigger .icon-close {
+    display: none;
+}
 
-        .dock-link:hover, .dock-link.active {
-            color: #034fc2a2;
-            background: rgba(56, 189, 248, 0.1);
-        }
+.floating-dock.active .dock-trigger {
+    background: #db0808cb; /* Berubah jadi merah saat terbuka */
+    transform: rotate(90deg);
+    box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
+}
 
-        /* Tooltip Menu (Muncul saat hover) */
-        .dock-link::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            right: 60px; /* Di sebelah kiri ikon */
-            background: var(--bg-card);
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            color: var(--text-main);
-            opacity: 0;
-            pointer-events: none;
-            transform: translateX(10px);
-            transition: 0.3s;
-            white-space: nowrap;
-            border: 1px solid var(--border);
-        }
+.floating-dock.active .dock-trigger .icon-main {
+    display: none;
+}
 
-        .dock-link:hover::after {
-            opacity: 1;
-            transform: translateX(0);
-        }
+.floating-dock.active .dock-trigger .icon-close {
+    display: block;
+}
 
-        .dock-footer {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            text-align: center;
-            writing-mode: vertical-rl; /* Teks vertikal */
-            transform: rotate(180deg);
-            letter-spacing: 2px;
-        }
+/* --- CONTAINER MENU IKON (TANPA ALAS/PANEL BACKGROUND) --- */
+.dock-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+    pointer-events: none; /* Cegah interaksi saat tersembunyi */
+}
+
+/* --- ITEM MINGGIR / TERSEMBUNYI SAAT INAKTIF --- */
+.dock-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    position: relative;
+    opacity: 0;
+    transform: translateX(40px) scale(0.8);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+/* Lingkaran Ikon Melayang */
+.dock-item i {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(15, 23, 42, 0.85); /* Dark semi-transparent */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.25s ease;
+}
+
+/* Teks Label di Samping Ikon */
+.dock-item .label {
+    position: absolute;
+    right: 56px;
+    background: rgba(15, 23, 42, 0.9);
+    color: #ffffff;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 0.825rem;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(8px);
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+}
+
+/* --- TAMPILAN SAAT MENU AKTIF/OPEN --- */
+.floating-dock.active .dock-items {
+    pointer-events: auto;
+}
+
+.floating-dock.active .dock-item {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    pointer-events: auto;
+}
+
+/* --- HOVER & ACTIVE STATE ITEM --- */
+.dock-item:hover i,
+.dock-item.active i {
+    background: #353e53;
+    color: #ffffff;
+    border-color: #60a5fa;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(37, 99, 235, 0.5);
+}
+
+.dock-item:hover .label {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
 
         /* --- HERO SECTION --- */
         #beranda {
@@ -627,3 +683,6 @@
     line-height: 1.5;
     margin: 0;
   }
+
+
+
