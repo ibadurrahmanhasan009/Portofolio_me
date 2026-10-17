@@ -15,37 +15,49 @@
 </head>
 <body>
 
-   <!-- NAVIGASI DOCK SAMPING KANAN -->
-<aside class="nav-dock">
-    <!-- Menu Ikon (Logo dihapus, menu otomatis naik ke paling atas) -->
-    <div class="dock-menu">
-        <a href="#beranda" class="dock-link active" data-tooltip="Beranda">
+ <!-- NAVIGASI DOCK FLOATING KANAN TENGAH -->
+<aside class="floating-dock" id="floatingDock">
+    <!-- TOMBOL TRIGGER / PENGATUR (Ganti Burger dengan Icon Grid) -->
+    <button class="dock-trigger" id="dockTrigger" aria-label="Toggle Navigation">
+        <i class="fas fa-th-large icon-main"></i>
+        <i class="fas fa-times icon-close"></i>
+    </button>
+
+    <!-- LIST MENU IKON MELAYANG (TANPA ALAS PANEL) -->
+    <nav class="dock-items" id="dockItems">
+        <a href="#beranda" class="dock-item active" data-tooltip="Beranda">
             <i class="fas fa-home"></i>
+            <span class="label">Beranda</span>
         </a>
-        <a href="#tentang" class="dock-link" data-tooltip="Tentang">
+        <a href="#tentang" class="dock-item" data-tooltip="Tentang">
             <i class="fas fa-user"></i>
+            <span class="label">Tentang</span>
         </a>
-        <a href="#skil" class="dock-link" data-tooltip="Skil">
+        <a href="#skil" class="dock-item" data-tooltip="Skil">
             <i class="fas fa-code"></i>
+            <span class="label">Skil</span>
         </a>
-        <a href="#pendidikan" class="dock-link" data-tooltip="Pendidikan">
+        <a href="#pendidikan" class="dock-item" data-tooltip="Pendidikan">
             <i class="fas fa-graduation-cap"></i>
+            <span class="label">Pendidikan</span>
         </a>
-        
-        <!-- FITUR BARU: PRESTASI & SERTIFIKAT -->
-        <a href="#prestasi" class="dock-link" data-tooltip="Prestasi">
+        <a href="#prestasi" class="dock-item" data-tooltip="Prestasi">
             <i class="fas fa-trophy"></i>
+            <span class="label">Prestasi</span>
         </a>
-        <a href="#proyek" class="dock-link" data-tooltip="Proyek">
+        <a href="#proyek" class="dock-item" data-tooltip="Proyek">
             <i class="fas fa-briefcase"></i>
+            <span class="label">Proyek</span>
         </a>
-        <a href="#cara-kerja" class="dock-link" data-tooltip="Cara Kerja">
+        <a href="#cara-kerja" class="dock-item" data-tooltip="Cara Kerja">
             <i class="fas fa-cogs"></i>
+            <span class="label">Cara Kerja</span>
         </a>
-        <a href="#kontak" class="dock-link" data-tooltip="Kontak">
+        <a href="#kontak" class="dock-item" data-tooltip="Kontak">
             <i class="fas fa-envelope"></i>
+            <span class="label">Kontak</span>
         </a>
-    </div>
+    </nav>
 </aside>
     <main>
         <!-- HERO SECTION -->
@@ -55,7 +67,7 @@
                 <h1 class="hero-title">Ibadurrahman Hasan<br><span class="text-accent">Web Developer.</span></h1>
                 <p class="hero-desc">Saya mempelajari ilmu PPLG (Pengembangan Perangkat Lunak & Gim), yang bisa membangun Website dengan sistem logic yang aman, dan dapat digunakan user dengan baik.</p>
                 <div class="hero-buttons">
-                    <a href="CV IBADURRAHMAN HASAN.pdf" class="btn">Lihat CV</a>
+                    <a href="CV_IBADURRAHMAN.pdf" class="btn">Lihat CV</a>
                     <a href="#kontak" class="btn btn-outline">Hubungi Saya</a>
                 </div>
             </div>
@@ -265,7 +277,7 @@
     <div class="filter-container" style="display: flex; justify-content: center; gap: 15px; margin: 20px 0 30px 0;">
         <button class="filter-btn active" data-filter="all">Semua</button>
         <button class="filter-btn" data-filter="php-mysql">PHP & MySQL</button>
-        <button class="filter-btn" data-filter="wordpress">WordPress</button>
+        <button class="filter-btn" data-filter="html">HTML, CSS, & JS</button>
     </div>
 
     <div class="projects-grid">
@@ -292,28 +304,73 @@
         </div>
 
   
-        <div class="project-card" data-category="wordpress">
-            <div class="project-img">
-                <img src="img_project/wordpres.png" alt="Website Company Profile - Wisata Alam">
-            </div>
-            <div class="project-info">
-                <span class="project-date" style="font-size: 0.8rem; color: var(--text-muted); font-family: 'Fira Code', monospace;">Februari 2026</span>
-                <h3 class="project-title" style="margin-top: 5px;">Company Profile - Wisata Alam</h3>
-                <p class="project-desc">Merancang dan mengonfigurasi website profil perusahaan menggunakan CMS WordPress pada lingkungan server lokal (LocalWP) lengkap dengan kustomisasi tata letak responsif.</p>
-                
-                <div class="project-tags" style="display: flex; gap: 8px; flex-wrap: wrap; margin: 15px 0;">
-                    <span class="tag" style="background: #1e293b; border: 1px solid var(--border); color: #38bdf8; padding: 4px 10px; font-size: 0.8rem; border-radius: 6px; font-family: 'Fira Code', monospace;"><i class="fab fa-wordpress"></i> WordPress</span>
-                    <span class="tag" style="background: #1e293b; border: 1px solid var(--border); color: #38bdf8; padding: 4px 10px; font-size: 0.8rem; border-radius: 6px; font-family: 'Fira Code', monospace;"><i class="fas fa-server"></i> LocalWP</span>
-                </div>
-
-                <div class="project-links">
-                    <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                    <a href="#" class="project-link"><i class="fab fa-github"></i> Source Code</a>
-                </div>
-            </div>
+     <!-- Project 1: Mitra Haidar Cell -->
+<div class="project-card" data-category="php-mysql">
+    <div class="project-img">
+        <img src="img_project/mitra.png" alt="mitracell.png">
+    </div>
+    <div class="project-info">
+        <span class="project-date" style="font-size: 0.8rem; color: var(--text-muted); font-family: 'Fira Code', monospace;">Maret 2026</span>
+        <h3 class="project-title" style="margin-top: 5px;">Mitra Haidar Cell — Web-Based Transaction & POS System</h3>
+        <p class="project-desc"><p><strong>Mitra Haidar Cell</strong> adalah sistem informasi transaksi dan POS berbasis web menggunakan PHP Native dan MySQL yang mempermudah pencatatan penjualan pulsa, paket data, serta kelola data stok barang secara terstruktur.</p></p>
+        
+        <div class="project-tags" style="display: flex; gap: 8px; flex-wrap: wrap; margin: 15px 0;">
+            <span class="tag" style="background: #1e293b; border: 1px solid var(--border); color: #38bdf8; padding: 4px 10px; font-size: 0.8rem; border-radius: 6px; font-family: 'Fira Code', monospace;"><i class="fab fa-php"></i> PHP Native</span>
+            <span class="tag" style="background: #1e293b; border: 1px solid var(--border); color: #38bdf8; padding: 4px 10px; font-size: 0.8rem; border-radius: 6px; font-family: 'Fira Code', monospace;"><i class="fas fa-database"></i> MySQL</span>
         </div>
 
+        <div class="project-links">
+            <a href="https://mitracell.site.je/pages/dashboard.php" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+            <a href="https://github.com/ibadurrahmanhasan009" class="project-link"><i class="fab fa-github"></i> Source Code</a>
+        </div>
     </div>
+</div>
+
+<!-- Project 2: E-Perpus MTsN Nagekeo -->
+<div class="project-card" data-category="php-mysql">
+    <div class="project-img">
+        <img src="img_project/perpus.png" alt="perpus.png">
+    </div>
+    <div class="project-info">
+        <span class="project-date" style="font-size: 0.8rem; color: var(--text-muted); font-family: 'Fira Code', monospace;">Oktober 2026</span>
+        <h3 class="project-title" style="margin-top: 5px;">E-Perpus MTsN Nagekeo — Library Management System</h3>
+        <p class="project-desc"><p><strong>E-Perpus MTsN Nagekeo</strong> adalah sistem manajemen perpustakaan sekolah berbasis web menggunakan PHP, MySQL, dan SB Admin 2 yang mempermudah sirkulasi peminjaman buku, pendataan anggota, serta pembuatan laporan secara cepat.</p></p>
+        
+        <div class="project-tags" style="display: flex; gap: 8px; flex-wrap: wrap; margin: 15px 0;">
+            <span class="tag" style="background: #1e293b; border: 1px solid var(--border); color: #38bdf8; padding: 4px 10px; font-size: 0.8rem; border-radius: 6px; font-family: 'Fira Code', monospace;"><i class="fab fa-php"></i> PHP Native</span>
+            <span class="tag" style="background: #1e293b; border: 1px solid var(--border); color: #38bdf8; padding: 4px 10px; font-size: 0.8rem; border-radius: 6px; font-family: 'Fira Code', monospace;"><i class="fas fa-database"></i> MySQL</span>
+            <span class="tag" style="background: #1e293b; border: 1px solid var(--border); color: #38bdf8; padding: 4px 10px; font-size: 0.8rem; border-radius: 6px; font-family: 'Fira Code', monospace;"><i class="fab fa-bootstrap"></i> SB Admin 2</span>
+        </div>
+
+        <div class="project-links">
+            <a href="https://perpus.infinityfreeapp.com/login.php" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+            <a href="https://github.com/ibadurrahmanhasan009" class="project-link"><i class="fab fa-github"></i> Source Code</a>
+        </div>
+    </div>
+</div>
+
+<!-- Project 3: Smart Expense -->
+<div class="project-card" data-category="html">
+    <div class="project-img">
+        <img src="img_project/smart.png" alt="smartexpense.png">
+    </div>
+    <div class="project-info">
+        <span class="project-date" style="font-size: 0.8rem; color: var(--text-muted); font-family: 'Fira Code', monospace;">Oktober 2026</span>
+        <h3 class="project-title" style="margin-top: 5px;">Smart Expense — Client-Side Expense & POS Calculator</h3>
+        <p class="project-desc"><p><strong>Smart Expense</strong> adalah aplikasi kalkulator transaksi dan pencatatan keuangan berbasis web interaktif menggunakan HTML, CSS, dan JavaScript dengan fitur LocalStorage browser untuk menyimpan data tanpa server backend.</p></p>
+        
+        <div class="project-tags" style="display: flex; gap: 8px; flex-wrap: wrap; margin: 15px 0;">
+            <span class="tag" style="background: #1e293b; border: 1px solid var(--border); color: #38bdf8; padding: 4px 10px; font-size: 0.8rem; border-radius: 6px; font-family: 'Fira Code', monospace;"><i class="fab fa-html5"></i> HTML5</span>
+            <span class="tag" style="background: #1e293b; border: 1px solid var(--border); color: #38bdf8; padding: 4px 10px; font-size: 0.8rem; border-radius: 6px; font-family: 'Fira Code', monospace;"><i class="fab fa-css3-alt"></i> CSS3</span>
+            <span class="tag" style="background: #1e293b; border: 1px solid var(--border); color: #38bdf8; padding: 4px 10px; font-size: 0.8rem; border-radius: 6px; font-family: 'Fira Code', monospace;"><i class="fab fa-js"></i> JavaScript</span>
+        </div>
+
+        <div class="project-links">
+            <a href="https://websmart-expense.vercel.app/" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+            <a href="https://github.com/ibadurrahmanhasan009" class="project-link"><i class="fab fa-github"></i> Source Code</a>
+        </div>
+    </div>
+</div>
 </section>
 
 <!-- STRUCTURE HTML -->
